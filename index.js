@@ -51,5 +51,6 @@ app.listen(3000, () => {
 });
 
 app.get("/api", (req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
   res.json(countriesMap);
 });
