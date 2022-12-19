@@ -75,21 +75,9 @@ app.use((req, res, next) => {
 });
 
 app.get("/api", (req, res, next) => {
-  const apiKey = req.get("x-api-key");
-  if (apiKey === process.env.API_KEY) {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Access-Control-Allow-Headers", "*");
-    res.status(200).json({
-      message: "Authorized.",
-      keyUsed: apiKey,
-      keyNeeded: process.env.API_KEY,
-      content: countriesMap,
-    });
-  } else {
-    res.status(401).json({
-      message: "Unauthorized. Provide x-api-key header.",
-    });
-  }
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Headers", "*");
+  res.status(200).json(countriesMap);
 });
 
 app.get("/api/:countryCode", function (req, res) {
