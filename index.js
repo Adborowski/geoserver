@@ -78,6 +78,10 @@ app.get("/api", (req, res, next) => {
       keyNeeded: process.env.API_KEY,
       content: countriesMap,
     });
+  } else {
+    res.status(401).json({
+      message: "Unauthorized. Provide x-api-key header.",
+    });
   }
 });
 
