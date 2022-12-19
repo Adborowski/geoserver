@@ -2,6 +2,11 @@ import express from "express";
 import * as dotenv from "dotenv"; // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
 import fetch, { Headers } from "node-fetch";
 import fs from "fs";
+// const API = require("./apiAuth");
+// import API from "./apiAuth/apiAuth.js";
+const { users, Countries } = import("./apiAuth/initialData.js");
+
+const API = import("./apiAuth/apiAuth.js");
 
 dotenv.config();
 var app = express();
