@@ -65,6 +65,11 @@ app.use((req, res, next) => {
       code: 401,
       message: "Unauthorized",
     });
+  } else {
+    res.status(200).json({
+      code: 200,
+      message: "Authorized",
+    });
   }
   next();
 });
