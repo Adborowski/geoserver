@@ -68,6 +68,7 @@ app.get("/api", (req, res, next) => {
   //   });
   // } else {
   res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Headers", "*");
   res
     .status(200)
     .json({ message: "Authorized.", keyUsed: apiKey, content: countriesMap });
