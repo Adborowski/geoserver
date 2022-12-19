@@ -70,7 +70,7 @@ app.get("/api", (req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res
     .status(200)
-    .json({ message: "Authorized.", key: apiKey, content: countriesMap });
+    .json({ message: "Authorized.", keyUsed: apiKey, content: countriesMap });
   // }
 });
 
