@@ -58,10 +58,14 @@ app.listen(3000, () => {
   console.log("Server running on port 3000");
 });
 
+// check api key
 app.use((req, res, next) => {
-  res.json({
-    message: "Middleware in use",
-  });
+  if (req.get("x-api-key") != process.env.API_KEY) {
+    res.status(401).json({
+      code: 401,
+      message: "Unauthorized",
+    });
+  }
   next();
 });
 
