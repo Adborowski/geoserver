@@ -2,11 +2,6 @@ import express from "express";
 import * as dotenv from "dotenv"; // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
 import fetch, { Headers } from "node-fetch";
 import fs from "fs";
-// const API = require("./apiAuth");
-// import API from "./apiAuth/apiAuth.js";
-const { users, Countries } = import("./apiAuth/initialData.js");
-
-const API = import("./apiAuth/apiAuth.js");
 
 dotenv.config();
 var app = express();
@@ -53,6 +48,15 @@ const countryCodes = fs.readFileSync("codes.txt", "utf-8").split(",");
 const countriesMap = JSON.parse(fs.readFileSync("countriesMap.json", "utf8"));
 app.listen(3000, () => {
   console.log("Server running on port 3000");
+});
+
+app.use((req, res, next) => {
+  const apiKey = req.get("API-KEY");
+  if (!apiKey || apiKey !== process.env.API_KEY) {
+    res.status(401).json({ error: "unauthorised" });
+  } else {
+    next();
+  }
 });
 
 app.get("/api", (req, res, next) => {
