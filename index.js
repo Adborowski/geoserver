@@ -67,6 +67,8 @@ app.use((req, res, next) => {
   }
 });
 
+app.use(express.json());
+
 app.get("/api", (req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Headers", "*");
@@ -80,5 +82,5 @@ app.get("/api/:countryCode", function (req, res) {
 
 app.post("/api/submitScore", function (req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
-  res.json({ status: 200, message: "Score received", body: req.body.score });
+  res.json({ status: 200, message: "Score received", body: req.body });
 });
