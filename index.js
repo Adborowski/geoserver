@@ -58,14 +58,10 @@ app.listen(3000, () => {
   console.log("Server running on port 3000");
 });
 
-// app.use((req, res, next) => {
-//
-//   if (!apiKey || apiKey !== process.env.API_KEY) {
-//     res.status(401).json({ error: "unauthorised" });
-//   } else {
-//     next();
-//   }
-// });
+app.use((req, res, next) => {
+  console.log("Time:", Date.now());
+  next();
+});
 
 app.get("/api", (req, res, next) => {
   const apiKey = req.get("x-api-key");
