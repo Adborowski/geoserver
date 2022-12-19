@@ -61,16 +61,16 @@ app.listen(3000, () => {
 
 app.get("/api", (req, res, next) => {
   const apiKey = req.get("API_KEY");
-  if (!apiKey || apiKey !== process.env.API_KEY) {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.status(401).json({
-      error: "Unauthorized. Please provide your API KEY using API-KEY header.",
-    });
-  } else {
-    res.status(200).json({ error: "Authorized." });
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.json(countriesMap);
-  }
+  // if (!apiKey || apiKey !== process.env.API_KEY) {
+  //   res.setHeader("Access-Control-Allow-Origin", "*");
+  //   res.status(401).json({
+  //     error: "Unauthorized. Please provide your API KEY using API-KEY header.",
+  //   });
+  // } else {
+  res.status(200).json({ message: "Authorized.", key: apiKey });
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.json(countriesMap);
+  // }
 });
 
 app.get("/api/:countryCode", function (req, res) {
