@@ -2,9 +2,17 @@ import express from "express";
 import * as dotenv from "dotenv"; // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
 import fetch, { Headers } from "node-fetch";
 import fs from "fs";
+// var cors = import("cors");
+import cors from "cors";
 
 dotenv.config();
 var app = express();
+
+app.use(
+  cors({
+    exposedHeaders: ["x-api-key"],
+  })
+);
 
 const fetchHeaders = new Headers();
 fetchHeaders.append("apikey", process.env.GEOAPIKEY);
