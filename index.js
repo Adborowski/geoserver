@@ -50,18 +50,26 @@ app.listen(3000, () => {
   console.log("Server running on port 3000");
 });
 
-app.use((req, res, next) => {
-  const apiKey = req.get("API-KEY");
-  if (!apiKey || apiKey !== process.env.API_KEY) {
-    res.status(401).json({ error: "unauthorised" });
-  } else {
-    next();
-  }
-});
+// app.use((req, res, next) => {
+//
+//   if (!apiKey || apiKey !== process.env.API_KEY) {
+//     res.status(401).json({ error: "unauthorised" });
+//   } else {
+//     next();
+//   }
+// });
 
 app.get("/api", (req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.json(countriesMap);
+  const apiKey = req.get("API-KEY");
+  if (!apiKey || apiKey !== process.env.API_KEY) {
+    res.status(401).json({
+      error: "Unauthorized. Please provide your API KEY using API-KEY header.",
+    });
+  } else {
+    res.status(200).json({ error: "Authorized." });
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.json(countriesMap);
+  }
 });
 
 app.get("/api/:countryCode", function (req, res) {
