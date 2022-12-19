@@ -79,7 +79,12 @@ app.get("/api", (req, res, next) => {
   res.setHeader("Access-Control-Allow-Headers", "*");
   res
     .status(200)
-    .json({ message: "Authorized.", keyUsed: apiKey, content: countriesMap });
+    .json({
+      message: "Authorized.",
+      keyUsed: apiKey,
+      keyNeeded: process.env.API_KEY,
+      content: countriesMap,
+    });
   // }
 });
 
