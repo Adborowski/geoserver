@@ -59,7 +59,9 @@ app.listen(3000, () => {
 });
 
 app.use((req, res, next) => {
-  console.log("Time:", Date.now());
+  res.json({
+    message: "Middleware in use",
+  });
   next();
 });
 
