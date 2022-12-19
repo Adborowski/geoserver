@@ -60,18 +60,11 @@ app.listen(3000, () => {
 
 // check api key
 app.use((req, res, next) => {
-  if (req.get("x-api-key") != process.env.API_KEY) {
-    res.status(401).json({
-      code: 401,
-      message: "Unauthorized",
-    });
+  if (req.get("x-api-key") === process.env.API_KEY) {
+    next();
   } else {
-    res.status(200).json({
-      code: 200,
-      message: "Authorized",
-    });
+    res.json({ code: 401, message: "Unauthorized. Use x-api-key header." });
   }
-  next();
 });
 
 app.get("/api", (req, res, next) => {
