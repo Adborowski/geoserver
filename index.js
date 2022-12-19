@@ -67,9 +67,10 @@ app.get("/api", (req, res, next) => {
   //     error: "Unauthorized. Please provide your API KEY using API-KEY header.",
   //   });
   // } else {
-  res.status(200).json({ message: "Authorized.", key: apiKey });
   res.setHeader("Access-Control-Allow-Origin", "*");
-  res.json(countriesMap);
+  res
+    .status(200)
+    .json({ message: "Authorized.", key: apiKey, content: countriesMap });
   // }
 });
 
