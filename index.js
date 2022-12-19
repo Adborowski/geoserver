@@ -60,7 +60,7 @@ app.listen(3000, () => {
 // });
 
 app.get("/api", (req, res, next) => {
-  const apiKey = req.get("API_KEY");
+  const apiKey = req.get("x-api-key");
   // if (!apiKey || apiKey !== process.env.API_KEY) {
   //   res.setHeader("Access-Control-Allow-Origin", "*");
   //   res.status(401).json({
