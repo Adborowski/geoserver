@@ -77,3 +77,8 @@ app.get("/api/:countryCode", function (req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.json(countriesMap[req.params.countryCode.toUpperCase()]);
 });
+
+app.post("/api/submitScore", function (req, res) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.json({ status: 200, message: "Score received", body: req.body });
+});
