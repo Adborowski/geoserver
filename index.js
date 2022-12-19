@@ -62,6 +62,7 @@ app.listen(3000, () => {
 app.get("/api", (req, res, next) => {
   const apiKey = req.get("API_KEY");
   if (!apiKey || apiKey !== process.env.API_KEY) {
+    res.setHeader("Access-Control-Allow-Origin", "*");
     res.status(401).json({
       error: "Unauthorized. Please provide your API KEY using API-KEY header.",
     });
