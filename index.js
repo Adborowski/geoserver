@@ -60,16 +60,19 @@ app.listen(3000, () => {
 
 // check api key
 app.use((req, res, next) => {
-  if (req.get("x-api-key") === process.env.API_KEY) {
-    next();
-  } else {
-    res.json({ code: 401, message: "Unauthorized. Use x-api-key header." });
-  }
+  console.log(req);
+  next();
+  // if (req.get("x-api-key") === process.env.API_KEY) {
+  //   next();
+  // } else {
+  //   res.json({ code: 401, message: "Unauthorized. Use x-api-key header." });
+  // }
 });
 
 app.use(express.json());
 
 app.get("/api", (req, res, next) => {
+  console.log("/api/");
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Headers", "*");
   res.status(200).json(countriesMap);
